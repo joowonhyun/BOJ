@@ -17,8 +17,6 @@ numberCardArr.forEach(card => {
   }
 });
 
-console.log(cardCount)
-
 // 문제 카드 배열을 순회하며 각 카드의 개수를 가져오기
 const result = problemCardArr.map(card => {
   return cardCount[card] || 0; // 카드가 없으면 0 반환
