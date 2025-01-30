@@ -6,33 +6,32 @@ const input = fs
   .split(" ")
   .map(Number);
 
-let [n, m] = input;
+let [n, m] = input; // n은 숫자의 범위(1부터 n까지), m은 선택할 숫자의 개수
 let arr = [];
+
 for (let i = 1; i <= n; i++) {
   arr.push(i);
 }
 let visited = new Array(n).fill(false);
-let selected = []; // 현재 순열에 포함된 원소(element)
-
+let selected = [];
 let answer = "";
 
 function dfs(arr, depth) {
-  if (depth == m) {
-    // 모든 순열을 확인하는 부분
-    let result = []; // 순열 결과 저장 테이블
-    for (let i of selected) result.push(arr[i]);
-    for (let x of result) answer += x + " "; // 계산된 순열을 실질적으로 처리하는 부분
-    answer += "\n";
+  if (depth === m) {
+    for (const i of selected) {
+      answer += arr[i] + " "; // 선택된 숫자를 바로 answer에 추가
+    }
+    answer += "\n"; // 줄바꿈 추가
     return;
   }
+
   for (let i = 0; i < arr.length; i++) {
-    // 하나씩 원소 인덱스(index)를 확인하며
-    if (visited[i]) continue; //[중복을 허용하지 않으므로] 이미 처리된 원소라면 무시
-    selected.push(i); // 현재 원소 선택
-    visited[i] = true; // 현재 원소 방문 처리
-    dfs(arr, depth + 1); // 재귀 함수 호출
-    selected.pop(); // 현재 원소 선택 취소
-    visited[i] = false; // 현재 원소 방문 처리 취소
+    if (visited[i]) continue; // 이미 선택된 숫자는 건너뜀
+    selected.push(i); // 현재 숫자 선택
+    visited[i] = true; // 방문 처리
+    dfs(arr, depth + 1); // 다음 깊이로 재귀 호출
+    selected.pop(); // 선택 취소
+    visited[i] = false; // 방문 해제
   }
 }
 dfs(arr, 0);
