@@ -9,11 +9,6 @@ const input = fs
 let [n, m] = input; // n은 숫자의 범위(1부터 n까지), m은 선택할 숫자의 개수
 let arr = [];
 
-// 1부터 n까지의 숫자를 arr에 추가
-for (let i = 1; i <= n; i++) {
-  arr.push(i);
-}
-
 let visited = new Array(n).fill(false);
 let selected = [];
 let answer = "";
@@ -24,9 +19,9 @@ function dfs(depth) {
     return;
   }
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 1; i <= n; i++) {
     if (visited[i]) continue; // 이미 선택된 숫자는 건너뜀
-    selected.push(arr[i]); // 현재 숫자 선택 (인덱스가 아닌 실제 값)
+    selected.push(i); // 현재 숫자를 선택
     visited[i] = true; // 방문 처리
     dfs(depth + 1); // 다음 깊이로 재귀 호출
     selected.pop(); // 선택 취소
