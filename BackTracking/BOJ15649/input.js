@@ -7,7 +7,6 @@ const input = fs
   .map(Number);
 
 let [n, m] = input; // n은 숫자의 범위(1부터 n까지), m은 선택할 숫자의 개수
-let arr = [];
 
 let visited = new Array(n).fill(false);
 let selected = [];
