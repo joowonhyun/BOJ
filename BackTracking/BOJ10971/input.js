@@ -10,20 +10,18 @@ const w = input.slice(1).map((line) => line.split(" ").map(Number));
 let MIN_CONST = Number.MAX_VALUE;
 const visited = new Array(n).fill(false);
 
-function backtrack(currentCity, count, cost) {
+function backtrack(current, count, cost) {
   if (count === n) {
-    if (w[currentCity][0] > 0) {
-      MIN_CONST = Math.min(MIN_CONST, cost + w[currentCity][0]); // 누적 비용 + 시작지점으로 돌아가는 비용
+    if (w[current][0] > 0) {
+      MIN_CONST = Math.min(MIN_CONST, cost + w[current][0]); // 누적 비용 + 시작지점으로 돌아가는 비용
     }
     return;
   }
-
   for (let i = 0; i < n; i++) {
-    if (w[currentCity][i] > 0 && !visited[i]) {
-      visited[i] = true;
-      backtrack(i, count + 1, cost + w[currentCity][i]);
-      visited[i] = false;
-    }
+    if (w[current][i] === 0 || visited[i]) continue;
+    visited[i] = true;
+    backtrack(i, count + 1, cost + w[current][i]);
+    visited[i] = false;
   }
 }
 visited[0] = true; // 시작 도시 방문
