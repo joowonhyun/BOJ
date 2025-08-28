@@ -15,7 +15,7 @@ for (let t = 0; t < testCaseCount; t++) {
 
   // 2. 그래프 만들기 (인접 리스트)
   const graph = Array.from({ length: V + 1 }, () => []); // 1번부터 V번까지
-  console.log(graph);
+
   for (let i = 0; i < E; i++) {
     const [u, v] = input[line++].split(" ").map(Number);
     graph[u].push(v);
