@@ -6,7 +6,6 @@ function bfs(A, B) {
   const queue = [[A, 1]]; // [값, 연산 횟수(+1)]
 
   while (queue.length > 0) {
-    // const [cur, cnt] = queue.shift();
     const [cur, cnt] = queue.shift();
     if (cur === B) return cnt;
     let next1 = cur * 2;
