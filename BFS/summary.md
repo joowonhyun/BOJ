@@ -67,3 +67,34 @@ bfs(graph, 1) 실행 시:
 4 꺼냄 → 인접 노드 없음
 5 꺼냄 → 인접 노드 없음
 6 꺼냄 → 인접 노드 없음 👉 탐색 종료
+
+## 5. 유형
+
+가. 일반 그래프 (인접리스트 + 1차원 visited)
+
+```javascript
+// 예: 정점이 5개인 그래프
+const N = 5;
+const adj = Array.from({ length: N + 1 }, () => []); // 인접리스트
+const visited = Array(N + 1).fill(false); // 1차원 visited
+```
+
+1. 정점 번호가 1 ~ N일 때, visited[i]는 i번 노드를 방문했는지 여부만 기록
+2. 주로 "노드 간 연결 관계"가 그래프(edge) 형태로 주어지는 문제에서 사용.
+   (예시: 친구 관계 그래프, 트리 탐색, 네트워크 연결 문제 등.)
+
+나. 격자 그래프 (2차원 배열 + 2차원 visited)
+
+```javascript
+// 예: N x M 격자
+const visited = Array.from({ length: N }, () => Array(M).fill(false));
+
+1. 격자는 좌표 (x, y)로 노드가 표현됨.
+2. visited[x][y]는 해당 좌표를 방문했는지 여부를 기록.
+(주로 "지도, 미로, 치즈, 토마토" 같은 격자 탐색 문제에서 사용)
+
+BFS 시 dx, dy로 상하좌우를 탐색해야 하므로 2차원이 필요!!
+
+- 인접리스트 + 1차원 visited → 일반 그래프 문제 (정점/간선 기반).
+- 격자 + 2차원 visited → 지도/미로/격자 문제 (좌표 기반).
+```
