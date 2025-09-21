@@ -86,7 +86,20 @@ const visited = Array(N + 1).fill(false); // 1차원 visited
 나. 격자 그래프 (2차원 배열 + 2차원 visited)
 
 ```javascript
-// 예: N x M 격자
+M = 가로 길이 = x축 = 열(column) 개수
+N = 세로 길이 = y축 = 행(row) 개수
+
+1) 즉, field[y][x]로 접근할 때:
+y (0 ~ N-1) → 행(세로, 위에서 아래)
+x (0 ~ M-1) → 열(가로, 왼쪽에서 오른쪽)
+
+2)배열 선언할 때
+Array.from({ length: N }, () => Array(M).fill(0));
+
+3) 세로(N) 만큼의 행을 만듦 + 각 행 안에 가로(M) 만큼의 열을 채움
+
+즉, 최종적으로 N행 × M열의 2차원 배열
+
 const visited = Array.from({ length: N }, () => Array(M).fill(false));
 
 1. 격자는 좌표 (x, y)로 노드가 표현됨.
