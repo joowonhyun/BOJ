@@ -24,9 +24,7 @@ function dfs(x, dist) {
   distance[x] = dist;
 
   for (let [y, cost] of graph[x]) {
-    if (distance[y] === -1) {
-      dfs(y, dist + cost);
-    }
+    dfs(y, dist + cost);
   }
 }
 
