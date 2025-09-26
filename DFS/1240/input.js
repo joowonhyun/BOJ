@@ -9,7 +9,6 @@ let index = 1;
 const [N, M] = input[0].split(" ").map(Number); // 노드 개수 N, 쌍의 개수 M
 
 const graph = Array.from({ length: N + 1 }, () => []);
-let visited = Array(N + 1).fill(false); // 1차원 visited
 let distance = Array(N + 1).fill(-1);
 
 for (let i = 0; i < N - 1; i++) {
@@ -17,20 +16,24 @@ for (let i = 0; i < N - 1; i++) {
   graph[x].push([y, cost]);
   graph[y].push([x, cost]);
 }
+
 function dfs(x, dist) {
-  if (visited[x]) return;
-  visited[x] = true;
+  // 아직 방문하지 않은 경우만 처리
+  if (distance[x] !== -1) return;
+
   distance[x] = dist;
+
   for (let [y, cost] of graph[x]) {
-    dfs(y, dist + cost);
+    if (distance[y] === -1) {
+      dfs(y, dist + cost);
+    }
   }
 }
 
 for (let i = 0; i < M; i++) {
   const [x, y] = input[index++].split(" ").map(Number);
 
-  visited.fill(false); // 매 쿼리마다 초기화
-  distance.fill(-1);
-  dfs(x, 0);
+  distance.fill(-1); // 초기화 (방문하지 않음을 -1로 표시)
+  dfs(x, 0); // x에서 시작해 거리 계산
   console.log(distance[y]);
 }
