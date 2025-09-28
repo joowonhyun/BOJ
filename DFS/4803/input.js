@@ -30,7 +30,7 @@ while (true) {
         visited[node] = true;
         for (let next of graph[node]) {
           if (!visited[next]) {
-            dfs(next, node);
+            dfs(next, node); // dfs(현재노드, 부모노드)
           } else if (next !== parent) {
             // 부모가 아닌 이미 방문된 정점을 만나면 사이클
             isTree = false;
