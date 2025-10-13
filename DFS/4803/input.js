@@ -25,7 +25,11 @@ while (true) {
   for (let i = 1; i <= n; i++) {
     if (!visited[i]) {
       let isTree = true;
-      // dfs를 각 컴포넌트 시작 시점에 선언 -> isTree에 접근 가능
+      /**
+       * DFS 함수는 dfs(현재노드, 부모노드) 형태로 호출되고,
+       * 이 parent 인자는 “바로 나를 호출한 노드(이전 노드)”를 뜻한다.
+       * 따라서, next !== parent 조건은 “부모가 아닌데 이미 방문된 노드 → 사이클”을 잡아내기 위한 것.
+       */
       function dfs(node, parent) {
         visited[node] = true;
         for (let next of graph[node]) {
