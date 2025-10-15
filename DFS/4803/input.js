@@ -26,17 +26,16 @@ while (true) {
     if (!visited[i]) {
       let isTree = true;
       /**
-       * DFS 함수는 dfs(현재노드, 부모노드) 형태로 호출되고,
-       * 이 parent 인자는 “바로 나를 호출한 노드(이전 노드)”를 뜻한다.
-       * 따라서, next !== parent 조건은 “부모가 아닌데 이미 방문된 노드 → 사이클”을 잡아내기 위한 것.
+       * node: 현재 방문 중인 정점
+       * next: 현재 정점(node)에서 인접한 정점
+       * parent:	현재 정점을 호출한 부모 정점
        */
       function dfs(node, parent) {
         visited[node] = true;
-        for (let next of graph[node]) {
+        for (const next of graph[node]) {
           if (!visited[next]) {
             dfs(next, node); // dfs(현재노드, 부모노드)
           } else if (next !== parent) {
-            // 부모가 아닌 이미 방문된 정점을 만나면 사이클
             isTree = false;
           }
         }
